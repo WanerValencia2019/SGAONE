@@ -1,0 +1,14 @@
+.item-table td a {
+    color: black;
+    text-decoration: none;
+}
+
+.perfil {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+
+.d {
+    display: none;
+}

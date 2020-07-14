@@ -1,0 +1,31 @@
+{% extends "teacher/base.html" %} {% block banner %} {% endblock banner %} {% block content %}
+<h3 class="text-center h1">Cursos</h3>
+
+<section class="mb-5">
+    <div class="container">
+        <div class="row justify-content-around">
+            {% for course in courses %}
+            <div class="container bg-light border shadow rounded col-lg-4 d-flex col-sm-12 col-md-5 " style="margin: 5px;">
+                <div class="row mr-4 border-right align-self-center">
+                    <a class="display-1 font-weight-bold text-black-50 " href="{{course.get_absolute_url}}">{{course.course}}</a>
+                </div>
+                <div class="row w-75 d-block mr-1 align-self-center">
+                    <div>
+                        <p class="font-weight-bold">Alumnos: <span class="badge badge-primary">{{course.get_students}}</span></p>
+                    </div>
+                    <div class="">
+                        <span class="font-weight-bolder">Asignaturas:</span>
+                        <ul>
+                            {% for subject in course.course_subject.all %}
+                            <li class="badge badge-info">{{subject}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

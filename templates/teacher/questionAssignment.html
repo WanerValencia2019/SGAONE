@@ -1,0 +1,16 @@
+{% extends "teacher/base.html" %} {% block banner %} {% endblock %} {% block content %}
+<h1 class="text-center">Preguntas del examen</h1>
+<div class="container d-flex justify-content-end"><button class="btn btn-info shadow">Editar</button></div>
+<div class="container">
+    <section class="m-4">
+        {% for question in questionsAssigment %}
+        <h5 class="mt-4">{{question}}</h5>
+        {% for choice in question.choices.all %}
+        <ul class="list-group-horizontal ml-5">
+            <li class="item-card">{{choice}}</li>
+        </ul>
+        {% endfor %}
+        <span class="font-weight-bold  ml-5">Respuesta correcta: </span><mark>{{question.answer}} </mark>{% endfor %}
+    </section>
+</div>
+{% endblock content %}

@@ -1,0 +1,101 @@
+{% extends "teacher/base.html" %} {% load static %} {% block banner %} {% endblock banner %} {% block content %}
+<div class="container d-flex justify-content-center mt-5 mb-5">
+    <section class="card">
+        <div class="card-header d-flex justify-content-between">
+            <h3 class="">Exámenes</h3>
+            <a href={% url 'teacher-assigment-create' %} class="btn btn-outline-primary btn-lg">Nuevo examen</a>
+        </div>
+        <div class="card-body d-flex flex-column-reverse">
+            <table id="table-assignment" class="table table-hover table-borderless table-light  table-responsive ">
+                {% if assignments %}
+                <thead class="">
+                    <th>Tema</th>
+                    <th>Curso</th>
+                    <th>Cantidad de preguntas</th>
+                    <th>Fecha de inicio</th>
+                    <th>Fecha de entrega</th>
+                    <th>Estado</th>
+                    <th>Preguntas</th>
+                    <th>Acciones</th>
+                </thead>
+                {% for assignment in assignments %}
+
+                <tr class="item-table">
+                    <td><a href={{assignment.get_absolute_url}} class=" ">{{assignment.title}}</a></td>
+                    <td class="d-none" name="{{assignment.id}}">{{assignment.id}}</td>
+                    <td class="text-center "><a href={{assignment.get_absolute_url}}>{{assignment.course}}</a></td>
+                    <td class="text-center "><a href={{assignment.get_absolute_url}}>{{assignment.get_count_questions}}</a></td>
+                    <td class="text-center "><time datetime="2015-12-31 23:59 ">{{assignment.start}}</time></td>
+                    <td class="text-center "><time datetime="2015-12-31 23:59 ">{{assignment.deadline}}</time></td>
+                    <td class="text-center  {% ifequal assignment.status 'WAIT' %}} btn-outline-secondary {% endifequal %} {% ifequal assignment.status 'CLOSED' %}} btn-outline-danger {% endifequal %}   {% ifequal assignment.status 'ACTIVE' %}} btn-outline-success {% endifequal %}"><time datetime="2015-12-31 23:59 ">{{assignment.status}}</time></td>
+                    <td>
+                        <button name="add" type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">
+                            Agregar
+                        </button>
+                    </td>
+                    <td>
+                        <div class="d-flex btn-group-toggle">
+
+                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Actualiza la información">
+                                <a href={% url 'teacher-assigment-update' pk=assignment.id %} class="btn btn-info text-white">Editar</a>
+                            </span>
+
+                            <a href={% url 'teacher-assigment-delete' pk=assignment.id %} data-toggle="tooltip" data-placement="right" title="Eliminar por completo" class="btn btn-danger ml-1 text-white">Eliminar</a>
+                        </div>
+                    </td>
+
+                </tr> {% endfor %} {% else %}
+                <h4 class="text-info ">Aún no has creado exámenes</h4>
+                {% endif %}
+            </table>
+        </div>
+    </section>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Preguntas </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-question">
+                        <div class="form-group">
+                            <label for="title">Pregunta</label>
+                            <input class="form-control" type="text" name="title" id="title" value="" placeholder="Pregunta">
+                        </div>
+                        <div class="form-group">
+                            <label for="count-choices">Cantidad de items</label>
+                            <select class=" form-control w-25" name="count-choices" id="count-choices">
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        </div>
+                        <div id="container-choices" class="form-group">
+
+                        </div>
+                        <div>
+                            <label for="answer">Respuesta correcta</label>
+                            <select class="form-control" name="answer" id="answer">
+                        </select>
+                        </div>
+
+                        <button id="add-question" class="btn btn-outline-info border-0">Añadir otra pregunta</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button id="save-questions" type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %} {% block js %}
+<script src="{% static './js/assignmentQuestion.js' %}"></script>
+{% endblock js %}

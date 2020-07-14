@@ -1,0 +1,53 @@
+{% extends "teacher/base.html" %} {% block content %}
+
+<div class="container d-flex justify-content-between mt-5 mb-5">
+    <section class="row col-3 card">
+        <h3 class="text-center">Cursos</h3>
+        <div class="card-body d-flex flex-column j">
+            {% if courses %} {% for course in courses %}
+            <a href={{course.get_absolute_url}} class="mt-3 btn btn-toolbar btn-outline-info border-0">{{course}}</a> {% endfor %} {% else %}
+            <h4 class="text-info">No tienes cursos asignados</h4>
+            {% endif %}
+        </div>
+    </section>
+    <section class="row col-6 card ">
+        <h3 class="text-center">Asignaturas</h3>
+        <div class="container card-body d-flex flex-column ">
+            {% if subjects %} {% for subject in subjects %}
+            <a href={% url 'teacher-courses' %} class="mt-3 btn btn-toolbar btn-outline-info border-0">{{subject}}</a> {% endfor %} {% else %}
+            <h4 class="text-info">No tienes asignaturas asignadas</h4>
+            {% endif %}
+        </div>
+    </section>
+</div>
+<div class="container d-flex justify-content-center mt-5 mb-5">
+    <section class="card">
+        <h3 class="card-header">Exámenes</h3>
+        <div class="card-body d-flex flex-column-reverse">
+            <table class="table table-hover table-borderless table-light  table-responsive ">
+                {% if assignments %}
+                <thead class="">
+                    <th>Tema</th>
+                    <th>Curso</th>
+                    <th>Cantidad de preguntas</th>
+                    <th>Fecha de inicio</th>
+                    <th>Fecha de entrega</th>
+                    <th>Estado</th>
+                </thead>
+                {% for assignment in assignments %}
+
+                <tr class="item-table ">
+                    <td><a href={{assignment.get_absolute_url}} class=" ">{{assignment.title}}</a></td>
+                    <td class="text-center "><a href={{assignment.get_absolute_url}}>{{assignment.course}}</a></td>
+                    <td class="text-center "><a href={{assignment.get_absolute_url}}>{{assignment.get_count_questions}}</a></td>
+                    <td class="text-center "><time datetime="2015-12-31 23:59 ">{{assignment.start}}</time></td>
+                    <td class="text-center "><time datetime="2015-12-31 23:59 ">{{assignment.deadline}}</time></td>
+                    <td class="text-center  {% ifequal assignment.status 'WAIT' %}} btn-outline-secondary {% endifequal %} {% ifequal assignment.status 'CLOSED' %}} btn-outline-danger {% endifequal %}   {% ifequal assignment.status 'ACTIVE' %}} btn-outline-success {% endifequal %}"><time datetime="2015-12-31 23:59 ">{{assignment.status}}</time></td>
+                </tr> {% endfor %} {% else %}
+                <h4 class="text-info ">Aún no has creado exámenes</h4>
+                {% endif %}
+            </table>
+        </div>
+    </section>
+</div>
+{% endblock content %}

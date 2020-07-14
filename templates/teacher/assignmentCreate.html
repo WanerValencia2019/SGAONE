@@ -1,0 +1,25 @@
+{% extends "teacher/base.html" %} {% load static %} {% block banner %} {% endblock %} {% block content %}
+
+<h4 class="text-center">Exámen</h4>
+<div class="container ">
+    <form method="POST" id="form" class="form-group d-flex flex-column m-3 rounded bg-light p-3">
+
+        {% csrf_token %} {{form.as_p}}
+
+        <button id="btn-create" class="btn btn-success  align-self-center w-25 shadow btn-lg mt-4" type="submit">Crear</button>
+    </form>
+
+</div>
+
+
+
+
+{% endblock content %} {% block js %}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script type="text/javascript">
+    const start = flatpickr('#id_start');
+    const deadline = flatpickr('#id_deadline', {
+        'enableTime': true
+    });
+</script>
+{% endblock js %}

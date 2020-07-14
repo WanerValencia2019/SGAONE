@@ -1,0 +1,71 @@
+ {% extends "teacher/base.html" %} {% block banner %} {% endblock banner %} {% block content %}
+<div class="container">
+    <section class="mt-5 mb-5 card w-100 shadow bg-dark">
+        <div class="container d-flex ">
+            <div class="row mr-5 align-content-center">
+                <div class="">
+                    {% ifequal student.gender 'FM' %}
+                    <img src="https://image.flaticon.com/icons/svg/3048/3048160.svg" class="img-fluid" width="120rem" height="120rem" alt="Foto de perfil"> {% else %}<img src="https://image.flaticon.com/icons/svg/265/265674.svg" class="card-img-top rounded-circle"
+                        alt="Foto de perfil"> {%endifequal%}
+                </div>
+            </div>
+            <article class="row w-75 d-block">
+                <h5 class="text-center text-white">{{student.first_name}} {{student.last_name}}</h5>
+                <div>
+                    <span class="text-info">Descripción</span>
+                    <p class="lead text-white-50 text-justify ml-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem perspiciatis facilis minus ab eveniet unde! Quisquam fugit molestias magni amet hic ipsa inventore! Dolores, delectus magni quam suscipit aliquid enim!</p>
+                </div>
+                <div class="d-flex">
+                    <div>
+                        <span class="text-info">Curso</span>
+                        <p class="text-center text-white-50">{{student.student_course}}</p>
+                    </div>
+                    <div class="ml-5">
+                        <span class="text-info">Identificación</span>
+                        <p class="text-center text-white">{{student.id}}</p>
+                    </div>
+                    <div class="ml-5">
+                        <span class="text-info">Discapacidades</span>
+                        <p class=" text-center text-white-50">Ninguna</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+</div>
+<div class="container-fluid d-inline-flex justify-content-between">
+    <section class="row card ml-4">
+        <h4 class="text-center h4">Notas parciales</h4>
+        <table class="table table-hover table-light  table-responsive ">
+
+            {% if answers %}
+
+            <thead class="p-4">
+                <th>Examén</th>
+                <th>Completado</th>
+                <th>Correctas</th>
+                <th>Incorrectas</th>
+                <th>Nota parcial</th>
+            </thead>
+
+            {% endif %} {% for answer in answers %}
+            <tr class="text-center">
+                <td>{{answer.assignment}}</td>
+                <td class="text-info">{{answer.get_total_answer}}</td>
+                <td class="text-success">{{answer.get_correct_answer}}</td>
+                <td class="text-danger">{{answer.get_incorrect_answer}}</td>
+                <td class="font-weight-bold">{{answer.grade}}</td>
+            </tr>
+            {% empty %}
+            <span class="alert alert-info m-2 h3">Aún no ha realizado exámenes</span> {% endfor %}
+        </table>
+    </section>
+    <section class="row card w-auto mr-4">
+        <h4 class="text-center ">Historial</h4>
+        <table class="table table-hover table-light  table-responsive ">
+            <span class="alert alert-info m-2 h3">No esta disponible actualmente</span>
+        </table>
+    </section>
+</div>
+
+{% endblock content %} {% block footer %} {% endblock footer %}

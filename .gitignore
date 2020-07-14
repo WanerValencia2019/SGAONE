@@ -1,0 +1,9 @@
+db.sqlite3
+SGA/__pycache__/
+.vscode/
+apps/activities_teacher/
+apps/users/__pycache__/
+apps/gestor/migrations/
+apps/gestor/__pycache__/
+apps/activities/migrations/
+apps/activities/__pycache__/

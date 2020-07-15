@@ -23,9 +23,12 @@
         <li class="nav-item list-unstyled">
             <a href="{% url 'teacher-graded-assigment' %}" class="nav-link link">Calificaciones</a>
         </li>
-        <div class="ml-5">
+        <div class="ml-lg-5 d-flex flex-lg-row flex-sm-column">
             <li class="nav-item list-unstyled">
                 <a href="{% url 'teacher-account' %}" class="nav-link me-link">Mi información</a>
+            </li>
+            <li class="m-lg-2 nav-item list-unstyled justify-content-center align-self-center">
+                <a style="color:brown;font-size: large;" aria-hidden="true" class="" href={% url 'logout' %}><span>Cerrar sesión</span></a>
             </li>
         </div>
     </div>

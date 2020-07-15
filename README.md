@@ -9,8 +9,8 @@ Sistema de gestión y evaluación académica de escuelas
       - ![Inicio](/SGA-ONE%20DOCENTE/student.PNG)
       - ![Inicio](/SGA-ONE%20DOCENTE/assignment.PNG)
       - ![Inicio](/SGA-ONE%20DOCENTE/assignmentCreate.PNG)
-      - ![Inicio](/SGA-ONE%20DOCENTE/detailAssignment.PNG)
       - ![Inicio](/SGA-ONE%20DOCENTE/addQuestion.PNG)
+      - ![Inicio](/SGA-ONE%20DOCENTE/detailAssignment.PNG)
       - ![Inicio](/SGA-ONE%20DOCENTE/graded.PNG)
 
 ### Instalación

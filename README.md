@@ -13,7 +13,7 @@ Sistema de gestión y evaluación académica de escuelas
 3. **Paso 3 - Migración inicial**
       - `python manage.py migrate`
       
-4. **Paso - Migrar modelos **
+4. **Paso - Migrar modelos**
       - `python manage.py makemigrations`
       - `python manage.py migrate`
       
